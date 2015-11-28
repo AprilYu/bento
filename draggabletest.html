@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Draggable - Default functionality</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <!--link rel="stylesheet" href="/resources/demos/style.css"-->
+  <style>
+  #draggable1 { width: 150px; height: 150px; padding: 0.5em; visibility: hidden; float: left;}
+  #draggable2 { width: 150px; height: 150px; padding: 0.5em; visibility: hidden; float: left;}
+  #draggable3 { width: 150px; height: 150px; padding: 0.5em; visibility: hidden; float: left;}
+  #draggable4 { width: 150px; height: 150px; padding: 0.5em; visibility: hidden; float: left;}
+  #draggable5 { width: 150px; height: 150px; padding: 0.5em; visibility: hidden; float: left;}
+  #draggable6 { width: 150px; height: 150px; padding: 0.5em; visibility: hidden; float: left;}
+  #draggable7 { width: 150px; height: 150px; padding: 0.5em; visibility: hidden; float: left;}
+  #draggable8 { width: 150px; height: 150px; padding: 0.5em; visibility: hidden; float: left;}
+  #draggable9 { width: 150px; height: 150px; padding: 0.5em; visibility: hidden; float: left;}
+  #draggable10 { width: 150px; height: 150px; padding: 0.5em; visibility: hidden; float: left;}
+  </style>
+  <script>
+  $(function() {
+    queue = 1;
+    $( "#button" ).click(function() {
+      if(queue < 11) {
+        var toShow = document.getElementById("draggable"+queue);
+        toShow.style.visibility = "visible";
+        queue++;
+      }
+    });
+    $( "#draggable1" ).draggable();
+    $( "#draggable2" ).draggable();
+    $( "#draggable3" ).draggable();
+    $( "#draggable4" ).draggable();
+    $( "#draggable5" ).draggable();
+    $( "#draggable6" ).draggable();
+    $( "#draggable7" ).draggable();
+    $( "#draggable8" ).draggable();
+    $( "#draggable9" ).draggable();
+    $( "#draggable10" ).draggable();
+  });
+  </script>
+</head>
+<body>
+<a id="button" href="#">Add</a>
+<div id="draggable1" class="ui-widget-content">
+  <p>Drag me around</p>
+</div>
+<div id="draggable2" class="ui-widget-content">
+  <p>Drag me around</p>
+</div>
+<div id="draggable3" class="ui-widget-content">
+  <p>Drag me around</p>
+</div>
+<div id="draggable4" class="ui-widget-content">
+  <p>Drag me around</p>
+</div>
+<div id="draggable5" class="ui-widget-content">
+  <p>Drag me around</p>
+</div>
+<div id="draggable6" class="ui-widget-content">
+  <p>Drag me around</p>
+</div>
+<div id="draggable7" class="ui-widget-content">
+  <p>Drag me around</p>
+</div>
+<div id="draggable8" class="ui-widget-content">
+  <p>Drag me around</p>
+</div>
+<div id="draggable9" class="ui-widget-content">
+  <p>Drag me around</p>
+</div>
+<div id="draggable10" class="ui-widget-content">
+  <p>Drag me around</p>
+</div>
+ 
+ 
+</body>
+</html>
