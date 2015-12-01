@@ -33,7 +33,13 @@
       display: inline; /* Shows input text box when .editing*/
     }
   </style>
+
   <script>
+  var windowX = $( window ).width(); //determines the width of the browser window
+  var windowY = $( window ).height();//determines the height of the browser window
+  var draggableX = 150; //put the width of your image here. my image was 2000x1000
+  var draggableY = 150;//image height
+
     $(function() {
       var sPositions = localStorage.positions || "{}",
           positions = JSON.parse(sPositions);
@@ -42,9 +48,11 @@
       })
 
       $("#draggable1" ).draggable({
-        containment: "#containment-wrapper",
+        //Containment puts limits on where it can be dragged.  Will be useful.
+        containment: [0, 0, (windowX - draggableX),(windowY - draggableY)] ,
         scroll: false,
         stop: function(event, ui){
+          //Saves positions in localStorage.
           positions[this.id] = ui.position;
           localStorage.positions = JSON.stringify(positions);
         }
