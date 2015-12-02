@@ -68,6 +68,7 @@ var windowX = $( window ).width(); //determines the width of the browser window
           localStorage.positions = JSON.stringify(positions);
         }
       });
+      $( ".draggable1" ).resizable();
       $("#todoapp").draggable({
         containment: "#containment-wrapper",
         scroll: false,
