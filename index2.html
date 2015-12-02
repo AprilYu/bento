@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!doctype html>
 <html>
 <head>
-<title>Handicraft a Industrial category Flat bootstrap Responsive  Website Template | Home :: w3layouts</title>
+<title>FASFJKA:SLFHandicraft a Industrial category Flat bootstrap Responsive  Website Template | Home :: w3layouts</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Handicraft Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -25,6 +25,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--script-->
 <script src="js/jquery.min.js"> </script>
 <script src="js/bootstrap.js"></script>
+
+<!--From touchpunch sandbox-->
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
+<script src="jquery.ui.touch-punch.min.js"></script>
+
 <!--/script-->
 <!--move-top-->
 <script type="text/javascript" src="js/move-top.js"></script>
@@ -37,7 +43,59 @@ event.preventDefault();
 $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 });
 });
+
+
+
+var windowX = $( window ).width(); //determines the width of the browser window
+  var windowY = $( window ).height();//determines the height of the browser window
+  var draggableX = 150; //put the width of your image here. my image was 2000x1000
+  var draggableY = 150;//image height
+
+    $(function() {
+      var sPositions = localStorage.positions || "{}",
+          positions = JSON.parse(sPositions);
+      $.each(positions, function (id, pos) {
+          $("#" + id).css(pos)
+      })
+
+      $(".draggable1" ).draggable({
+        //Containment puts limits on where it can be dragged.  Will be useful.
+        containment: [0, 0, (windowX - draggableX),(windowY - draggableY)] ,
+        scroll: false,
+        stop: function(event, ui){
+          //Saves positions in localStorage.
+          positions[this.id] = ui.position;
+          localStorage.positions = JSON.stringify(positions);
+        }
+      });
+      $("#todoapp").draggable({
+        containment: "#containment-wrapper",
+        scroll: false,
+        stop: function(event, ui){
+          positions[this.id] = ui.position;
+          localStorage.positions = JSON.stringify(positions);
+        }
+      });
+    });
 </script>
+
+<style type="text/css">
+    /* Hides bullet points from todo list */
+    #todoapp ul {
+      list-style-type: none;
+    }
+    .draggable1 { width: 150px; height: 150px; padding: 0.5em; visibility: visible; float: left;}
+
+    #todo-list input.edit {
+      display: none; /* Hides input box*/
+    }
+    #todo-list .editing label {
+      display: none; /* Hides label text when .editing*/
+    }
+    #todo-list .editing input.edit {
+      display: inline; /* Shows input text box when .editing*/
+    }
+</style>
 <!--/move-top-->
 </head>
 <body>
@@ -281,7 +339,7 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 		<div class="container">
 			<h3 class="heading text-center">Gallery</h3>
 			<div class="gallery-bottom">
-					<div class="col-md-3 gallery-grid">
+					<div class="col-md-3 draggable1">
 						<a class="example-image-link" href="images/g1.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" src="images/g1.jpg" alt=""/></a>
 					</div>
 					<div class="col-md-3 gallery-grid">
