@@ -288,6 +288,7 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 
       $("#draggable1").on("taphold",function(){
 		  	document.getElementById("overlay").style.visibility = "visible";
+        console.log("Holding!");
 		  	//$(this).find('about-words').toggleClass("uncheckedborder");
    		 if( $('#about-words').hasClass('borderClass') ){
 		        $('#about-words').removeClass('borderClass');
