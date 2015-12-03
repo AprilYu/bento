@@ -52,6 +52,10 @@ function set_body_height() { // set body height = window height
     set_body_height();
   });
 
+setInterval(function(){
+    $('#reminder').show();
+},2000);
+
 </script>
 
 <style type="text/css">
@@ -87,6 +91,13 @@ function set_body_height() { // set body height = window height
     display: block;
     margin: auto;
   }
+
+  .reminder {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+}
 </style>
 <!--/move-top-->
 </head>
@@ -103,6 +114,9 @@ function set_body_height() { // set body height = window height
 </div>
 
 <div>
+  <div class="reminder">
+    <a href="view-film.html"><img style="display:none;" id="reminder" src="images/reminder.png"/></a>
+  </div>
 	<div id="about" class="about">
           <div style="display: none;"><a href="view-film.html"><img class="center fit" src="images/film.png"/></a> </div>
           <a href="view-recipe.html"><img class="center fit" src="images/recipe.png" /></a>
