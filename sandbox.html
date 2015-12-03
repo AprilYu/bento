@@ -56,7 +56,7 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
     #todoapp ul {
       list-style-type: none;
     }
-    .draggable1 {
+    #draggable1 {
     	display: inline-block;
     }
 
@@ -188,7 +188,7 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 </div>
 
 <div class = "container">
-	<div id="about" class="about draggable1">
+	<div class="about" id = "draggable1">
 		<div class="container">
 			<div class="about-top heading" id="about-words">
 				<h3>About</h3>
@@ -280,10 +280,13 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
       var sVisibilities = localStorage.visibilities || "{}",
         visibilities = JSON.parse(sVisibilities);
       $.each(visibilities, function(id){
-      	$(id).css("visibility", "hidden")
+      	if(visibilities[id] == false){
+      		$("#" + id).css("visibility", "hidden")	
+      	}
+      	
       })
 
-      $(".draggable1").on("taphold",function(){
+      $("#draggable1").on("taphold",function(){
 		  	document.getElementById("overlay").style.visibility = "visible";
 		  	//$(this).find('about-words').toggleClass("uncheckedborder");
    		 if( $('#about-words').hasClass('borderClass') ){
@@ -300,15 +303,24 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 			});*/
 
 			$("#overlay").on("tap",function(){
-		  	$(".draggable1").css("visibility", "hidden");
+		  	$("#draggable1").css("visibility", "hidden");
 		  	$("#about-words").css("visibility", "hidden");//hide();
-		  	visibilities['about'] = false;
+		  	$("#overlay").css("visibility", "hidden");//hide();
+		  	visibilities['draggable1'] = false;
+        localStorage.visibilities = JSON.stringify(visibilities);
+			});
+
+			$("body").on("taphold",function(){
+		  	$("#draggable1").css("visibility", "visible");
+		  	//$("#overlay").css("visibility", "visible");
+		  	$("#about-words").css("visibility", "visible");
+		  	visibilities['draggable1'] = true;
         localStorage.visibilities = JSON.stringify(visibilities);
 			});
 
 
 
-      $(".draggable1" ).draggable({
+      $("#draggable1" ).draggable({
         //Containment puts limits on where it can be dragged.  Will be useful.
         //containment: "#about",
         containment: "body",
