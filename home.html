@@ -52,6 +52,10 @@ function set_body_height() { // set body height = window height
     set_body_height();
   });
 
+setInterval(function(){
+    $('#reminder').show();
+},10000);
+
 </script>
 
 <style type="text/css">
@@ -87,6 +91,13 @@ function set_body_height() { // set body height = window height
     display: block;
     margin: auto;
   }
+
+  .reminder {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+}
 </style>
 <!--/move-top-->
 </head>
@@ -97,12 +108,15 @@ function set_body_height() { // set body height = window height
 
     <a class="logo" href="#"><img src="images/logo.jpg" /></a>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><i class="fa fa-plus"></i></a></li>
+        <li><a href="create.html"><i class="fa fa-2x fa-plus"></i></a></li>
       </ul>
   </div><!-- /.container-fluid -->
 </div>
 
 <div>
+  <div class="reminder">
+    <a href="view-film.html"><img style="display:none;" id="reminder" src="images/reminder.png"/></a>
+  </div>
 	<div id="about" class="about">
           <div style="display: none;"><a href="view-film.html"><img class="center fit" src="images/film.png"/></a> </div>
           <a href="view-recipe.html"><img class="center fit" src="images/recipe.png" /></a>

@@ -114,8 +114,17 @@ float: right!important;
     left: 50%;
     margin-left:-30px;
     text-align: center;
-    top: 15%;
+    top: 25%;
 }
+
+form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -80px;
+  text-align: center;
+}
+
 .logo img{
 width:100%
 }
@@ -1224,6 +1233,18 @@ width: 100%;
 	text-align: right;
 	float: right;
 	}
+
+  #botNav ul {
+    display: table;
+    width:100%;
+  }
+
+  #botNav li {
+    display: table-cell;
+    width: 25%;
+    text-align: center;
+  }
+
 	ul.nav1{
 		display:none;
 		background:#f2f2f2;
@@ -1638,8 +1659,9 @@ width: 100%;
 	    margin-bottom: 10px;
 	}
 	.about {
-	    padding: 3em 0 0em;
+	    padding: 4em 0 0em;
 	}
+
 	.team-left {
 	    padding: 1em 0 0;
 	}
