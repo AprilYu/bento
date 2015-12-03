@@ -29,6 +29,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--From touchpunch sandbox-->
 <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script src="jquery.ui.touch-punch.min.js"></script>
 
 <!--/script-->
@@ -43,34 +44,26 @@ event.preventDefault();
 $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 });
 });
-
-
-
-
 </script>
 
-<style type="text/css">
-    /* Hides bullet points from todo list */
-    #todoapp ul {
-      list-style-type: none;
-    }
-    .draggable1 { }
-
-    #todo-list input.edit {
-      display: none; /* Hides input box*/
-    }
-    #todo-list .editing label {
-      display: none; /* Hides label text when .editing*/
-    }
-    #todo-list .editing input.edit {
-      display: inline; /* Shows input text box when .editing*/
-    }
-    html, body
-    {
-      height: 100%;
-    }
+<style>
+  .entry-draggable{
+    display:inline-block;
+  }
+  #delDiv {
+   z-index: 3;
+   position: fixed;
+   width: 20%;
+   bottom: 2.5%;
+   right: 40%;
+   visibility: hidden;
+  }
+  #delImg{
+  z-index: 3;
+   width: 100%;
+   height: auto;
+  }
 </style>
-<!--/move-top-->
 </head>
 
 <body>
@@ -78,7 +71,7 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
   <div class=".navcontainer container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
 
-    <a class="logo" href="#"><img src="images/logo.jpg" /></a>
+    <a class="logo" id = "reset" href="#"><img src="images/logo.jpg" /></a>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
       <ul class="nav navbar-nav">
@@ -90,65 +83,109 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
   </div><!-- /.container-fluid -->
 </div>
 
-<div class = "container .cont2">
-  <div id="about" class="about" style="display: inline-block;">
-    <img class="draggable1 large" src="images/social-title.png" />
+<div id = "main-canvas" class = "container">
+  <div class = "about">
+    <img id="social-title"class="entry-draggable large" src="images/social-title.png" />
   </div>
-  <div id="about" class="about" style="display: inline-block;">
-    <img class="draggable1 large" src="images/social-text-1.png" />
+  <div class="about">
+    <img id="social-text-1"class="entry-draggable large" src="images/social-text-1.png" />
   </div>
-  <div id="about" class="about" style="display: inline-block;">
-    <img class = "draggable1 small" src="images/social-text-2.png" />
+  <div class="about">
+    <img id="social-text-2"class = "entry-draggable small" src="images/social-text-2.png" />
   </div>
-  <div id="about" class="about" style="display: inline-block;">
-    <img class = "draggable1 large" src="images/baby.png" />
+  <div class="about">
+    <img id="baby"class = "entry-draggable large" src="images/baby.png" />
   </div>
-  <div id="about" class="about" style="display: inline-block;">
-    <img class = "draggable1 medium" src="images/selfie.png" />
+  <div class="about">
+    <img id="selfie"class = "entry-draggable medium" src="images/selfie.png" />
   </div>
+</div>
+<div id = "delDiv">
+  <img id = "delImg" src="images/close_icon.png">
 </div>
 
 <script>
+
   var windowX = $( window ).width(); //determines the width of the browser window
+  console.log("WindowX = " + windowX);
   var windowY = $( window ).height();//determines the height of the browser window
-  var draggableX = 150//$(draggable1).width(); //put the width of your image here. my image was 2000x1000
-  var draggableY = 150//$(draggable1).height();//image height
-
   var topNavBarY = $('#topNav').height();
-  var topNavBarX = $('#topNav').position().left;
-
   var botNavBarY = windowY - $('#botNav').height();
-  //var topNavBarX = $('#topNav').position().left;
+  
 
     $(function() {
-      var sPositions = localStorage.positions || "{}",
+      var maxZIndex = 1;
+
+      //Loads persistent positions
+      var sPositions = localStorage.socialPositions || "{}",
           positions = JSON.parse(sPositions);
       $.each(positions, function (id, pos) {
           $("#" + id).css(pos)
       })
 
-      $(".draggable1" ).draggable({
+      //Loads persistent hidden/nonhidden visibilities
+      var sVisibilities = localStorage.socialVisibilities || "{}",
+        visibilities = JSON.parse(sVisibilities);
+      $.each(visibilities, function(id){
+        if(visibilities[id] == false){
+          $("#" + id).css("visibility", "hidden") 
+        }
+      })
+
+      $(".entry-draggable" ).draggable({
         //Containment puts limits on where it can be dragged.  Will be useful.
-        //containment: "#about",
+        //containment: [0, topNavBarY, windowX, windowY],
         containment: "body",
-        //containment: [topNavBarX,topNavBarY, (windowX - draggableX),botNavBarY - $('.draggable1').height()] ,
-        //containment: [-500, topNavBarY, 500,(windowY - draggableY)] ,
         scroll: false,
+        start: function(event, ui){
+          maxZIndex += 1;
+          console.log("Max Z: " + maxZIndex);
+          $("#" + this.id).css("z-index", maxZIndex);
+        },
+        drag: function(event, ui){
+          
+          $("#delDiv").css("visibility", "visible");
+          $("#delImg").css("visibility", "visible");
+          
+          
+        },
         stop: function(event, ui){
           //Saves positions in localStorage.
-          positions[this.id] = ui.position;
-          localStorage.positions = JSON.stringify(positions);
+          $("#delImg").css("visibility", "hidden");
+          console.log($(this).width());
+          positions[event.target.id] = ui.position;
+          localStorage.socialPositions = JSON.stringify(positions);
         }
       });
-      $("#todoapp").draggable({
-        containment: "#containment-wrapper",
-        scroll: false,
-        stop: function(event, ui){
-          positions[this.id] = ui.position;
-          localStorage.positions = JSON.stringify(positions);
+
+
+      $("#reset").on("taphold", function(){
+        localStorage.socialPositions = [];
+      });
+
+      $("#reset").on("tap", function(){
+        //Sets hardcoded positions for each
+        localStorage.socialPositions = [];
+        positions = {"social-title":{"top":12,"left":9},"social-text-1":{"top":87,"left":15},"social-text-2":{"top":-113,"left":35},"baby":{"top":-132,"left":8}}
+        localStorage.socialPositions = JSON.stringify(positions);
+      });
+
+      $( "#delDiv" ).droppable({
+        //accept: ".entry-draggable",
+        drop: function( event, ui ) {
+          //$("#delImg").append(ui.entry-draggable);
+          //$("#delImg").css("visibility", "hidden");
+          console.log("something was dropped");
+          console.log(this.id);
+          console.log(ui.draggable[0]);
+          $("#" + ui.draggable[0].id).css("visibility", "hidden");
+          visibilities[ui.draggable[0].id] = false;
+          localStorage.socialVisibilities = JSON.stringify(visibilities);
         }
       });
-    });
+    }); 
+
+
     </script>
 </body>
 </html>
