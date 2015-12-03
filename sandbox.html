@@ -60,6 +60,14 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
     	display: inline-block;
     }
 
+    #about-words.uncheckedborder{
+    	border: 3px solid #3f96cf;
+    }
+
+    .borderClass{
+    	border:1px solid red;
+		}		
+
     #todo-list input.edit {
       display: none; /* Hides input box*/
     }
@@ -182,7 +190,7 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 <div class = "container">
 	<div id="about" class="about draggable1">
 		<div class="container">
-			<div class="about-top heading ">
+			<div class="about-top heading" id="about-words">
 				<h3>About</h3>
 			</div>
 			<div id="overlay" class="about-close">
@@ -265,21 +273,37 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
     $(function() {
       var sPositions = localStorage.positions || "{}",
           positions = JSON.parse(sPositions);
+
       $.each(positions, function (id, pos) {
           $("#" + id).css(pos)
+      })
+      var sVisibilities = localStorage.visibilities || "{}",
+        visibilities = JSON.parse(sVisibilities);
+      $.each(visibilities, function(id){
+      	$(id).css("visibility", "hidden")
       })
 
       $(".draggable1").on("taphold",function(){
 		  	document.getElementById("overlay").style.visibility = "visible";
+		  	//$(this).find('about-words').toggleClass("uncheckedborder");
+   		 if( $('#about-words').hasClass('borderClass') ){
+		        $('#about-words').removeClass('borderClass');
+    		}else{
+    		    $('#about-words').addClass('borderClass');
+    		}
 		  	//document.getElementById("overlay").style
 			});
 
-			/*$("body").on("taphold",function(){
+
+			/*$(".body").on("taphold",function(){
 		  	document.getElementById("overlay").style.visibility = "hidden";
 			});*/
 
-			$("#overlay").on("taphold",function(){
-		  	$(".draggable1").hide();
+			$("#overlay").on("tap",function(){
+		  	$(".draggable1").css("visibility", "hidden");
+		  	$("#about-words").css("visibility", "hidden");//hide();
+		  	visibilities['about'] = false;
+        localStorage.visibilities = JSON.stringify(visibilities);
 			});
 
 
