@@ -29,6 +29,14 @@ p,a,span,i{
   -ms-transition: 0.5s all ease;
 }
 
+#photo-nav {
+  position: fixed;
+  left: 0px;
+  bottom: 63px;
+  height: 30px;
+  width: 100%;
+}
+
 img.small {
   width:50%;
   height:auto;

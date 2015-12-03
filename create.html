@@ -84,15 +84,22 @@ function handleText() {
 }
 
 function handlePhoto() {
+  $('#photo-nav').hide();
   $('#photo').show();
 }
 
 function handleAudio() {
+  $('#photo-nav').hide();
   $('#audio').show();
 }
 
 function handleVideo() {
+  $('#photo-nav').hide();
   $('#video').show()
+}
+
+function handleMedia() {
+  $('#photo-nav').show();
 }
 
 
@@ -172,13 +179,13 @@ function handleVideo() {
     <div id="text3" class="about" style="display: none;">
       <img class="draggable1 large" src="images/film-text-3.png" />
     </div>
-    <div id="audio" class="about" style="display: inline-block;">
+    <div id="audio" class="about" style="display: none;">
       <img class="draggable1 small" src="images/film-audio.png" />
     </div>
-    <div id="photo" class="about" style="display: inline-block;">
+    <div id="photo" class="about" style="display: none;">
       <img class="draggable1 small" src="images/film-kiss.png" />
     </div>
-    <div id="video" class="about" style="display: inline-block;">
+    <div id="video" class="about" style="display: none;">
       <img class="draggable1 large" src="images/film-video.png" />
     </div>
 	</div>
@@ -186,15 +193,26 @@ function handleVideo() {
 
 
 <!-- footer -->
+<div class="navbar navbar-default navbar-fixed-bottom" id="photo-nav" style="display:none;">
+  <div class="container-fluid">
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+      <ul class="nav navbar-nav">
+        <li><a onclick='handlePhoto()'><i class="fa fa-2x fa-camera"></i></a></li>
+        <li><a onclick='handleAudio()'><i class="fa fa-2x fa-video-camera"></i></a></li>
+        <li><a onclick='handleVideo()'><i class="fa fa-2x fa-microphone"></i></a></li>
+      </ul>
+  </div><!-- /.container-fluid -->
+</div>
 <div class="navbar navbar-default navbar-fixed-bottom" id="botNav">
   <div class="container-fluid">
 
     <!-- Collect the nav links, forms, and other content for toggling -->
       <ul class="nav navbar-nav">
         <li><a id="text" onclick='handleText()'><i class="fa fa-2x fa-paragraph"></i></i></a></li>
-        <li><a href="#"><i class="fa fa-2x fa-camera"></i></a></li>
-        <li><a href="#"><i class="fa fa-2x fa-video-camera"></i></a></li>
-        <li><a href="#"><i class="fa fa-2x fa-microphone"></i></a></li>
+        <li><a onclick='handleMedia()'><i class="fa fa-2x fa-camera"></i></a></li>
+        <li><a onclick='handleMedia()'><i class="fa fa-2x fa-video-camera"></i></a></li>
+        <li><a onclick='handleMedia()'><i class="fa fa-2x fa-microphone"></i></a></li>
       </ul>
   </div><!-- /.container-fluid -->
 </div>
