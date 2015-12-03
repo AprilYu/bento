@@ -283,12 +283,10 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
       	if(visibilities[id] == false){
       		$("#" + id).css("visibility", "hidden")	
       	}
-      	
       })
 
       $("#draggable1").on("taphold",function(){
 		  	document.getElementById("overlay").style.visibility = "visible";
-        console.log("Holding!");
 		  	//$(this).find('about-words').toggleClass("uncheckedborder");
    		 if( $('#about-words').hasClass('borderClass') ){
 		        $('#about-words').removeClass('borderClass');

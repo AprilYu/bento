@@ -69,13 +69,14 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
   #delDiv {
    z-index: 3;
    position: fixed;
-   bottom: 25px;
-   right: 25px;
+   width: 20%;
+   bottom: 2.5%;
+   right: 40%;
    visibility: hidden;
   }
   #delImg{
   z-index: 3;
-   width: 100px;
+   width: 100%;
    height: auto;
   }
   
@@ -91,7 +92,7 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
   <div class=".navcontainer container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
 
-    <a class="logo" href="#"><img src="images/logo.jpg" /></a>
+    <a class="logo" id = "reset" href="#"><img src="images/logo.jpg" /></a>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
       <ul class="nav navbar-nav">
@@ -105,46 +106,25 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 
 <div id = "main-canvas" class = "container">
 	<div class="about">
-    <div id = "recipe-title" class = "entry-draggable">
-  		<img class="large" src="images/recipe-title.png" />
-      <img id = "recipe-title-close" class = "close-image" src="images/close_icon.png"/>
-    </div>
+  	<img id = "recipe-title" class="entry-draggable large" src="images/recipe-title.png" />
 	</div>
   <div class="about">
-    <div id = "ingredients" class = "entry-draggable">
-      <img id="ingredients" class="medium" src="images/ingredients.png" />
-      <img id = "ingredients-close" class = "close-image" src="images/close_icon.png"/>
-    </div>
+      <img id="ingredients" class="entry-draggable small" src="images/ingredients.png"/>
   </div>
   <div class="about">
-    <div id = "clip-of-chef" class = "entry-draggable">
-    <img class="small" src="images/clip-of-chef.png" />
-    <img id = "clip-of-chef-close" class = "close-image" src="images/close_icon.png"/>
-    </div>
+    <img id = "clip-of-chef" class="entry-draggable small" src="images/clip-of-chef.png" />
   </div>
   <div class="about" style="display: inline-block;">
-    <div id = "tomatoes-text" class = "entry-draggable">
-    <img class="large" src="images/tomatoes-text.png" />
-    <img id = "tomatoes-text-close" class = "close-image" src="images/close_icon.png"/>
-    </div>
+    <img id = "tomatoes-text" class="entry-draggable large" src="images/tomatoes-text.png" />
   </div>
   <div class="about" style="display: inline-block;">
-    <div id = "tomatoes" class = "entry-draggable">
-    <img class="small" src="images/tomatoes.png" />
-    <img id = "tomatoes-close" class = "close-image" src="images/close_icon.png"/>
-    </div>
+    <img id = "tomatoes" class="entry-draggable small" src="images/tomatoes.png" />
   </div>
   <div class="about" style="display: inline-block;">
-    <div id = "audio-clip" class = "entry-draggable">
-    <img class="small" src="images/audio-clip.png" />
-    <img id = "audio-clip-close" class = "close-image" src="images/close_icon.png"/>
-    </div>
+    <img id = "audio-clip" class="entry-draggable small" src="images/audio-clip.png" />
   </div>
   <div class="about" style="display: inline-block;">
-    <div id = "food-video" class = "entry-draggable">
-    <img class="large" src="images/food-video.png" />
-    <img id = "food-video-close" class = "close-image" src="images/close_icon.png"/>
-    </div>
+    <img id = "food-video" class="entry-draggable large" src="images/food-video.png" />
   </div>
 </div>
 <div id = "delDiv">
@@ -166,9 +146,11 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 
   var botNavBarY = windowY - $('#botNav').height();
   //var topNavBarX = $('#topNav').position().left;
+  
 
 
     $(function() {
+      var maxZIndex = 1;
 
       //Loads persistent positions
       var sPositions = localStorage.positions || "{}",
@@ -188,27 +170,41 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 
       $(".entry-draggable" ).draggable({
         //Containment puts limits on where it can be dragged.  Will be useful.
-        containment: [0, topNavBarY, windowX, windowY],
-        //containment: "body",
+        //containment: [0, topNavBarY, windowX, windowY],
+        containment: "body",
         scroll: false,
+        start: function(event, ui){
+          maxZIndex += 1;
+          console.log("Max Z: " + maxZIndex);
+          $("#" + this.id).css("z-index", maxZIndex);
+        },
         drag: function(event, ui){
+          
           $("#delDiv").css("visibility", "visible");
           $("#delImg").css("visibility", "visible");
-          $(this.id).css("z-index", 3);
+          
+          
         },
         stop: function(event, ui){
           //Saves positions in localStorage.
-          //$("#delBox").css("visibility", "visible");
+          $("#delImg").css("visibility", "hidden");
           console.log($(this).width());
           positions[event.target.id] = ui.position;
           localStorage.positions = JSON.stringify(positions);
         }
       });
 
-      $(".entry-draggable").on("taphold", function(){
-        $("#" + this.id + "-close").css("visibility", "visible");
 
+      $("#reset").on("taphold", function(){
+        localStorage.clear();
       });
+
+      $("#reset").on("tap", function(){
+        localStorage.clear();
+        positions = {"ingredients":{"top":-44,"left":186},"clip-of-chef":{"top":-89,"left":9},"tomatoes-text":{"top":-119,"left":12},"tomatoes":{"top":-497,"left":11},"recipe-title":{"top":8,"left":14},"audio-clip":{"top":-512,"left":186},"food-video":{"top":-477,"left":9}};
+        localStorage.positions = JSON.stringify(positions);
+      });
+        
 
       $(".close-image").on("tap", function(){
         console.log(this.parentElement);
@@ -224,11 +220,11 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
        });
 
 
-      $( "#delImg" ).droppable({
+      $( "#delDiv" ).droppable({
         //accept: ".entry-draggable",
         drop: function( event, ui ) {
           //$("#delImg").append(ui.entry-draggable);
-          $("#delImg").css("visibility", "hidden");
+          //$("#delImg").css("visibility", "hidden");
           console.log("something was dropped");
           console.log(this.id);
           console.log(ui.draggable[0]);
