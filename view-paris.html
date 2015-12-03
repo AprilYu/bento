@@ -44,13 +44,8 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 });
 });
 
-function set_body_height() { // set body height = window height
-    $('body').height($(window).height());
-  }
-  $(document).ready(function() {
-    $(window).bind('resize', set_body_height);
-    set_body_height();
-  });
+
+
 
 </script>
 
@@ -74,19 +69,6 @@ function set_body_height() { // set body height = window height
     {
     	height: 100%;
     }
-
-    * {
-    padding: 0;
-    margin: 0;
-  }
-  .fit { /* set relative picture size */
-    max-width: 100%;
-    max-height: 100%;
-  }
-  .center {
-    display: block;
-    margin: auto;
-  }
 </style>
 <!--/move-top-->
 </head>
@@ -94,23 +76,73 @@ function set_body_height() { // set body height = window height
 <body>
 <div class="navbar navbar-default navbar-fixed-top" id = "topNav">
   <div class=".navcontainer container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
 
     <a class="logo" href="#"><img src="images/logo.jpg" /></a>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><i class="fa fa-plus"></i></a></li>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+      <ul class="nav navbar-nav">
+        <li><a href="home.html"><i class="fa fa-chevron-left"></i></a></li>
       </ul>
+      <!-- <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Edit</a></li>
+      </ul> -->
   </div><!-- /.container-fluid -->
 </div>
 
-<div>
-	<div id="about" class="about">
-          <div style="display: none;"><a href="view-film.html"><img class="center fit" src="images/film.png"/></a> </div>
-          <a href="view-recipe.html"><img class="center fit" src="images/recipe.png" /></a>
-          <a href="view-paris.html"><img class="center fit" src="images/paris.png" /></a>
-          <a href="view-music.html"><img class="center fit" src="images/music.png" /></a>
-          <a href="view-social.html"><img class="center fit" src="images/social.png" /></a>
-          <a href="view-website.html"><img class="center fit" src="images/website.png" /></a>
+<div class = "container .cont2">
+	<div id="about" class="about draggable1" style="display: inline-block;">
+		<img src="images/paris-title.png" />
 	</div>
+  <div id="about" class="about draggable1" style="display: inline-block;">
+    <img src="images/paris-text.png" />
+  </div>
+  <div id="about" class="about draggable1" style="display: inline-block;">
+    <img src="images/louve.png" />
+  </div>
 </div>
+
+<script>
+	var windowX = $( window ).width(); //determines the width of the browser window
+  var windowY = $( window ).height();//determines the height of the browser window
+  var draggableX = 150//$(draggable1).width(); //put the width of your image here. my image was 2000x1000
+  var draggableY = 150//$(draggable1).height();//image height
+
+  var topNavBarY = $('#topNav').height();
+  var topNavBarX = $('#topNav').position().left;
+
+  var botNavBarY = windowY - $('#botNav').height();
+  //var topNavBarX = $('#topNav').position().left;
+
+    $(function() {
+      var sPositions = localStorage.positions || "{}",
+          positions = JSON.parse(sPositions);
+      $.each(positions, function (id, pos) {
+          $("#" + id).css(pos)
+      })
+
+      $(".draggable1" ).draggable({
+        //Containment puts limits on where it can be dragged.  Will be useful.
+        //containment: "#about",
+        containment: "body",
+        //containment: [topNavBarX,topNavBarY, (windowX - draggableX),botNavBarY - $('.draggable1').height()] ,
+        //containment: [-500, topNavBarY, 500,(windowY - draggableY)] ,
+        scroll: false,
+        stop: function(event, ui){
+          //Saves positions in localStorage.
+          positions[this.id] = ui.position;
+          localStorage.positions = JSON.stringify(positions);
+        }
+      });
+      $("#todoapp").draggable({
+        containment: "#containment-wrapper",
+        scroll: false,
+        stop: function(event, ui){
+          positions[this.id] = ui.position;
+          localStorage.positions = JSON.stringify(positions);
+        }
+      });
+    });
+    </script>
 </body>
 </html>

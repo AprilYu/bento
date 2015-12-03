@@ -28,6 +28,22 @@ p,a,span,i{
   -o-transition: 0.5s all ease;
   -ms-transition: 0.5s all ease;
 }
+
+img.small {
+  width:50%;
+  height:auto;
+}
+
+img.medium {
+  width:65%;
+  height:auto;
+}
+
+img.large {
+  width: 90%;
+  height: auto;
+}
+
 /*--header-nav--*/
 .header {
     background-color: #fff;
