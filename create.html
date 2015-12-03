@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!doctype html>
 <html>
 <head>
-<title>FASFJKA:SLFHandicraft a Industrial category Flat bootstrap Responsive  Website Template | Home :: w3layouts</title>
+<title>Bento</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Handicraft Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -44,7 +44,56 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 });
 });
 
+$(document).ready(function(){
+  clicks = 0;
+  $("#text").click(function() {
+    clicks++;
+  })
+})
 
+function handleSubmit() {
+  if (clicks == 1) {
+    $("#form1").hide();
+    $("#title").show();
+    return false;
+  } else if (clicks == 2) {
+    $("#form2").hide();
+    $("#text1").show();
+    return false;
+  } else if (clicks == 3) {
+    $("#form3").hide();
+    $("#text2").show();
+    return false;
+  } else {
+    $("#form4").hide();
+    $("#text3").show();
+    return false;
+  }
+}
+
+function handleText() {
+  if (clicks == 0){
+    $('#form1').show();
+  } else if(clicks == 1) {
+    $('#form2').show();
+  } else if (clicks == 2) {
+    $('#form3').show();
+  } else {
+    $('#form4').show();
+  }
+}
+
+function handlePhoto() {
+  $('#photo').show();
+}
+
+function handleAudio() {
+  $('#audio').show();
+}
+
+function handleVideo() {
+  $('#video').show()
+}
 
 
 </script>
@@ -82,48 +131,56 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 
     <!-- Collect the nav links, forms, and other content for toggling -->
       <ul class="nav navbar-nav">
-        <li><a href="home.html"><i class="fa fa-chevron-left"></i></a></li>
+        <li><a href="home.html"><i class="fa fa-2x fa-chevron-left"></i></a></li>
       </ul>
-      <!-- <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Edit</a></li>
-      </ul> -->
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="home.html"><i class="fa fa-2x fa-check"></i></a></li>
+      </ul>
   </div><!-- /.container-fluid -->
 </div>
 
 <div class = "container .cont2">
-	<div id="about" class="about draggable1">
-		<div class="container">
-			<div class="about-top heading ">
-				<h3>About</h3>
-			</div>
-			<div class="about-bottom">
-				<div class="col-md-6 about-left draggable2">
-					<h4>Integer facilisis auctor ante. Praesent pellentesque, magna eu egestas varius, ligula ipsum pulvinar mauris, quis sodales urna enim eget enim. Donec sed gravida eros, et auctor enim.</h4>
-					<p>Praesent pulvinar libero at lectus vulputate blandit. Maecenas mauris dolor, commodo id congue nec, laoreet at turpis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec nec bibendum arcu. Morbi pretium eleifend sapien et vulputate.</p>
-				</div>	
-				<div class="col-md-6 about-right draggable3">
-					<div class="abt-one">
-						<div class="abt-left">
-							<span class="glyphicon glyphicon-gift" aria-hidden="true"> </span>
-						</div>	
-						<div class="abt-right">
-							<p>Fusce vulputate vel nisl at condimentum. Etiam efficitur est eu mauris mattis, vestibulum semper libero tempus. Quisque at augue venenatis, varius est ut, tristique justo.</p>
-						</div>	
-						<div class="clearfix"> </div>	
-					</div>
-					<div class="abt-one">
-						<div class="abt-left">
-							<span class="glyphicon glyphicon-cog" aria-hidden="true"> </span>
-						</div>	
-						<div class="abt-right">
-							<p>Fusce vulputate vel nisl at condimentum. Etiam efficitur est eu mauris mattis, vestibulum semper libero tempus. Quisque at augue venenatis, varius est ut, tristique justo.</p>
-						</div>	
-						<div class="clearfix"> </div>	
-					</div>					
-				</div>	
-				<div class="clearfix"> </div>	
-			</div>
-		</div>
+	<div id="about" class="about">
+    <form id="form" style="display: none;" onSubmit="return handleSubmit()">
+      <input type="text" name="bleh">
+    </form>
+    <form id="form" style="display: none;" onSubmit="return handleSubmit()">
+      <input type="text" name="bleh">
+    </form>
+    <form id="form1" style="display: none;" onSubmit="return handleSubmit()">
+      <input type="text" name="bleh">
+    </form>
+    <form id="form2" style="display: none;" onSubmit="return handleSubmit()">
+      <input type="text" name="bleh">
+    </form>
+    <form id="form3" style="display: none;" onSubmit="return handleSubmit()">
+      <input type="text" name="bleh">
+    </form>
+    <form id="form4" style="display: none;" onSubmit="return handleSubmit()">
+      <input type="text" name="bleh">
+    </form>
+
+    <div id="title" class="about" style="display: none;">
+      <img class="draggable1 large" src="images/film-title.png" />
+    </div>
+    <div id="text1" class="about" style="display: none;">
+      <img class="draggable1 small" src="images/film-text-1.png" />
+    </div>
+    <div id="text2" class="about" style="display: none;">
+      <img class = "draggable1 small" src="images/film-text-2.png" />
+    </div>
+    <div id="text3" class="about" style="display: none;">
+      <img class="draggable1 large" src="images/film-text-3.png" />
+    </div>
+    <div id="audio" class="about" style="display: inline-block;">
+      <img class="draggable1 small" src="images/film-audio.png" />
+    </div>
+    <div id="photo" class="about" style="display: inline-block;">
+      <img class="draggable1 small" src="images/film-kiss.png" />
+    </div>
+    <div id="video" class="about" style="display: inline-block;">
+      <img class="draggable1 large" src="images/film-video.png" />
+    </div>
 	</div>
 </div>
 
@@ -131,55 +188,14 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 <!-- footer -->
 <div class="navbar navbar-default navbar-fixed-bottom" id="botNav">
   <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Brand</a>
-    </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
+        <li><a id="text" onclick='handleText()'><i class="fa fa-2x fa-paragraph"></i></i></a></li>
+        <li><a href="#"><i class="fa fa-2x fa-camera"></i></a></li>
+        <li><a href="#"><i class="fa fa-2x fa-video-camera"></i></a></li>
+        <li><a href="#"><i class="fa fa-2x fa-microphone"></i></a></li>
       </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </div>
 
