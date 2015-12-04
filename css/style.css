@@ -33,8 +33,15 @@ p,a,span,i{
   position: fixed;
   left: 0px;
   bottom: 63px;
-  height: 30px;
+  height: 100px;
   width: 100%;
+  margin: 0;
+}
+
+img.thumbnail {
+  height: 70px;
+  width: auto;
+  position: absolute;
 }
 
 img.small {
