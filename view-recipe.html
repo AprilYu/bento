@@ -44,25 +44,9 @@ event.preventDefault();
 $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 });
 });
-
-
-
-
 </script>
 
 <style>
-  .close-image {
-      width: 25px;
-      height: auto;
-      cursor: pointer;
-      display: inline-block;
-  /*      float: right;*/
-      z-index: 3;
-      position: absolute; /*newly added*/
-      right: 30px; /*newly added*/
-      top: 5px;/*newly added*/
-      visibility: hidden;
-  }
   .entry-draggable{
     display:inline-block;
   }
@@ -79,8 +63,6 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
    width: 100%;
    height: auto;
   }
-  
-
 </style>
 
 
@@ -134,26 +116,18 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 
 <script>
 
-  var lastAccessed;
 	var windowX = $( window ).width(); //determines the width of the browser window
   console.log("WindowX = " + windowX);
   var windowY = $( window ).height();//determines the height of the browser window
-  var draggableX = 150//$(draggable1).width(); //put the width of your image here. my image was 2000x1000
-  var draggableY = 150//$(draggable1).height();//image height
-
   var topNavBarY = $('#topNav').height();
-  var topNavBarX = $('#topNav').position().left;
-
   var botNavBarY = windowY - $('#botNav').height();
-  //var topNavBarX = $('#topNav').position().left;
   
-
 
     $(function() {
       var maxZIndex = 1;
 
       //Loads persistent positions
-      var sPositions = localStorage.positions || "{}",
+      var sPositions = localStorage.recipePositions || "{}",
           positions = JSON.parse(sPositions);
       $.each(positions, function (id, pos) {
           $("#" + id).css(pos)
@@ -190,7 +164,7 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
           $("#delImg").css("visibility", "hidden");
           console.log($(this).width());
           positions[event.target.id] = ui.position;
-          localStorage.positions = JSON.stringify(positions);
+          localStorage.recipePositions = JSON.stringify(positions);
         }
       });
 
@@ -200,25 +174,11 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
       });
 
       $("#reset").on("tap", function(){
+        //Sets hardcoded positions for each
         localStorage.clear();
         positions = {"ingredients":{"top":-44,"left":186},"clip-of-chef":{"top":-89,"left":9},"tomatoes-text":{"top":-119,"left":12},"tomatoes":{"top":-497,"left":11},"recipe-title":{"top":8,"left":14},"audio-clip":{"top":-512,"left":186},"food-video":{"top":-477,"left":9}};
-        localStorage.positions = JSON.stringify(positions);
+        localStorage.recipePositions = JSON.stringify(positions);
       });
-        
-
-      $(".close-image").on("tap", function(){
-        console.log(this.parentElement);
-        $("#" + this.id).css("visibility", "hidden");
-        $("#" + this.parentElement.id).css("visibility", "hidden");
-        visibilities[this.id] = false;
-        visibilities[this.parentElement.id] = false;
-        localStorage.visibilities = JSON.stringify(visibilities);
-      });
-
-       $( "#delImg" ).on("tap", function(){
-        console.log("Tapped");
-       });
-
 
       $( "#delDiv" ).droppable({
         //accept: ".entry-draggable",
@@ -231,12 +191,8 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
           $("#" + ui.draggable[0].id).css("visibility", "hidden");
           visibilities[ui.draggable[0].id] = false;
           localStorage.visibilities = JSON.stringify(visibilities);
-          //console.log(this + " was dropped!");
-          //return true;
         }
       });
-
-
     }); 
 
 
