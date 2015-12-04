@@ -161,11 +161,13 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 
       $("#reset").on("taphold", function(){
         localStorage.socialPositions = [];
+        localStorage.socialVisibilities = [];
       });
 
       $("#reset").on("tap", function(){
         //Sets hardcoded positions for each
         localStorage.socialPositions = [];
+        localStorage.socialVisibilities = [];
         positions = {"social-title":{"top":12,"left":9},"social-text-1":{"top":87,"left":15},"social-text-2":{"top":-113,"left":35},"baby":{"top":-132,"left":8}}
         localStorage.socialPositions = JSON.stringify(positions);
       });

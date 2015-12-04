@@ -170,12 +170,14 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 
 
       $("#reset").on("taphold", function(){
-        localStorage.clear();
+        localStorage.recipePositions = [];
+        localStorage.recipeVisibilities = [];
       });
 
       $("#reset").on("tap", function(){
         //Sets hardcoded positions for each
-        localStorage.clear();
+        localStorage.recipePositions = []
+        localStorage.recipeVisibilities = [];
         positions = {"ingredients":{"top":-44,"left":186},"clip-of-chef":{"top":-89,"left":9},"tomatoes-text":{"top":-119,"left":12},"tomatoes":{"top":-497,"left":11},"recipe-title":{"top":8,"left":14},"audio-clip":{"top":-512,"left":186},"food-video":{"top":-477,"left":9}};
         localStorage.recipePositions = JSON.stringify(positions);
       });
@@ -190,7 +192,7 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
           console.log(ui.draggable[0]);
           $("#" + ui.draggable[0].id).css("visibility", "hidden");
           visibilities[ui.draggable[0].id] = false;
-          localStorage.visibilities = JSON.stringify(visibilities);
+          localStorage.recipeVisibilities = JSON.stringify(visibilities);
         }
       });
     }); 

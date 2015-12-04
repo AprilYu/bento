@@ -156,11 +156,13 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 
       $("#reset").on("taphold", function(){
         localStorage.websitePositions = [];
+        localStorage.websiteVisibilities = [];
       });
 
       $("#reset").on("tap", function(){
         //Sets hardcoded positions for each
         localStorage.websitePositions = [];
+        localStorage.websiteVisibilities = [];
         positions = {"website-title":{"top":16,"left":4},"website-text":{"top":173,"left":4},"honeycomb":{"top":-269,"left":7}}
         localStorage.websitePositions = JSON.stringify(positions);
       });

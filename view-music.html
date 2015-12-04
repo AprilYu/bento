@@ -156,11 +156,13 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 
       $("#reset").on("taphold", function(){
         localStorage.musicPositions = [];
+        localStorage.musicVisibilities = [];
       });
 
       $("#reset").on("tap", function(){
         //Sets hardcoded positions for each
         localStorage.musicPositions = [];
+        localStorage.musicVisibilities = [];
         positions = {"music-title":{"top":2,"left":18},"music-text":{"top":-44,"left":24},"music-shape":{"top":-83,"left":88}}
         localStorage.musicPositions = JSON.stringify(positions);
       });

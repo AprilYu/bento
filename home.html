@@ -43,7 +43,7 @@ event.preventDefault();
 $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 });
 
-if(localStorage.create) {
+if(localStorage.create == "true") {
   $('#film').show();
 }
 });
@@ -64,25 +64,7 @@ setInterval(function(){
 
 <style type="text/css">
     /* Hides bullet points from todo list */
-    #todoapp ul {
-      list-style-type: none;
-    }
-    .draggable1 { }
-
-    #todo-list input.edit {
-      display: none; /* Hides input box*/
-    }
-    #todo-list .editing label {
-      display: none; /* Hides label text when .editing*/
-    }
-    #todo-list .editing input.edit {
-      display: inline; /* Shows input text box when .editing*/
-    }
-    html, body
-    {
-    	height: 100%;
-    }
-
+    
     * {
     padding: 0;
     margin: 0;
@@ -110,7 +92,7 @@ setInterval(function(){
 <div class="navbar navbar-default navbar-fixed-top" id = "topNav">
   <div class=".navcontainer container-fluid">
 
-    <a class="logo" href="#"><img src="images/logo.jpg" /></a>
+    <a class="logo" href="#"><img src="images/logo.jpg" onclick="localStorage.create = false"/></a>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="create.html"><i class="fa fa-2x fa-plus"></i></a></li>
       </ul>

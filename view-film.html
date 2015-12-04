@@ -167,11 +167,13 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 
       $("#reset").on("taphold", function(){
         localStorage.filmPositions = [];
+        localStorage.filmVisibilities = [];
       });
 
       $("#reset").on("tap", function(){
         //Sets hardcoded positions for each
         localStorage.filmPositions = [];
+        localStorage.filmVisibilities = [];
         positions = {"film-title":{"top":10,"left":17},"film-text-1":{"top":-4,"left":-5},"film-text-2":{"top":-247,"left":151},"film-kiss":{"top":-618,"left":152},"film-text-3":{"top":-34,"left":-9},"film-audio":{"top":-322,"left":1}}
         localStorage.filmPositions = JSON.stringify(positions);
       });

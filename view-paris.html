@@ -157,11 +157,13 @@ $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 
       $("#reset").on("taphold", function(){
         localStorage.parisPositions = [];
+        localStorage.parisVisibilities = [];
       });
 
       $("#reset").on("tap", function(){
         //Sets hardcoded positions for each
         localStorage.parisPositions = [];
+        localStorage.parisVisibilities = [];
         positions = {"paris-title":{"top":-2,"left":4},"paris-text":{"top":-73,"left":9},"louve":{"top":-125,"left":11}}
         localStorage.parisPositions = JSON.stringify(positions);
       });

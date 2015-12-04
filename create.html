@@ -289,25 +289,6 @@ function handleSelectVideo() {
         }
       });
 
-      function saveData(elID){
-        console.log("Saving...");
-        $.each(positions, function (id, pos) {
-          console.log(id);
-            $("#" + id).css(pos)
-      })
-        /*var sPositions = localStorage.filmPositions || "{}",
-          positions = JSON.parse(sPositions);
-
-        var sVisibilities = localStorage.filmVisibilities || "{}",
-          visibilities = JSON.parse(sVisibilities);
-
-          positions[elId] = $("#" + elId).position;
-          localStorage.filmPositions = JSON.stringify(positions);
-          visibilities[elID] = true;
-          localStorage.filmVisibilities = JSON.stringify(visibilities);*/
-      }
-
-
       $("#reset").on("taphold", function(){
         localStorage.filmPositions = [];
       });
