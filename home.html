@@ -42,6 +42,10 @@ $(".scroll").click(function(event){
 event.preventDefault();
 $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 });
+
+if(localStorage.create) {
+  $('#film').show();
+}
 });
 
 function set_body_height() { // set body height = window height
@@ -118,7 +122,7 @@ setInterval(function(){
     <a href="view-film.html"><img style="display:none;" id="reminder" src="images/reminder.png"/></a>
   </div>
 	<div id="about" class="about">
-          <div style="display: none;"><a href="view-film.html"><img class="center fit" src="images/film.png"/></a> </div>
+          <div id="film" style="display: none;"><a href="view-film.html"><img class="center fit" src="images/film.png"/></a> </div>
           <a href="view-recipe.html"><img class="center fit" src="images/recipe.png" /></a>
           <a href="view-paris.html"><img class="center fit" src="images/paris.png" /></a>
           <a href="view-music.html"><img class="center fit" src="images/music.png" /></a>

@@ -50,6 +50,8 @@ $(document).ready(function(){
   $("#text").click(function() {
     clicks++;
   })
+
+  localStorage.create = "true";
 })
 
 function handleSubmit() {
@@ -86,23 +88,42 @@ function handleText() {
 
 function handlePhoto() {
   $('#photo-nav').hide();
+  $('#select-photo').hide();
+  $('#select-video').hide();
+  $('#select-audio').hide();
   $('#photo').show();
 }
 
 function handleAudio() {
   $('#photo-nav').hide();
+  $('#select-photo').hide();
+  $('#select-video').hide();
+  $('#select-audio').hide();
   $('#audio').show();
 }
 
 function handleVideo() {
   $('#photo-nav').hide();
+  $('#select-photo').hide();
+  $('#select-video').hide();
+  $('#select-audio').hide();
   $('#video').show()
 }
 
-function handleMedia() {
+function handleSelectPhoto() {
   $('#photo-nav').show();
+  $('#select-photo').show();
 }
 
+function handleSelectAudio() {
+  $('#photo-nav').show();
+  $('#select-audio').show();
+}
+
+function handleSelectVideo() {
+  $('#photo-nav').show();
+  $('#select-video').show();
+}
 
 </script>
 
@@ -190,15 +211,15 @@ function handleMedia() {
 </div>
 
 
-<!-- footer -->
+<!-- photo selection -->
 <div class="navbar navbar-default navbar-fixed-bottom" id="photo-nav" style="display:none;">
   <div class="container-fluid">
 
     <!-- Collect the nav links, forms, and other content for toggling -->
       <ul class="nav navbar-nav">
-        <li><a onclick='handlePhoto()'><i class="fa fa-2x fa-camera"></i></a></li>
-        <li><a onclick='handleAudio()'><i class="fa fa-2x fa-video-camera"></i></a></li>
-        <li><a onclick='handleVideo()'><i class="fa fa-2x fa-microphone"></i></a></li>
+        <li><a onclick='handlePhoto()'><img id="select-photo" class="thumbnail" style="display:none;" src="images/film-kiss.png" /></i></a></li>
+        <li><a onclick='handleAudio()'><img id="select-audio" class="thumbnail" style="display:none;" src="images/film-audio.png" /></i></a></li>
+        <li><a onclick='handleVideo()'><img id="select-video" class="thumbnail" style="display:none;" src="images/film-video.png" /></i></a></li>
       </ul>
   </div><!-- /.container-fluid -->
 </div>
@@ -208,9 +229,9 @@ function handleMedia() {
     <!-- Collect the nav links, forms, and other content for toggling -->
       <ul class="nav navbar-nav">
         <li><a id="text" onclick='handleText()'><i class="fa fa-2x fa-paragraph"></i></i></a></li>
-        <li><a onclick='handleMedia()'><i class="fa fa-2x fa-camera"></i></a></li>
-        <li><a onclick='handleMedia()'><i class="fa fa-2x fa-video-camera"></i></a></li>
-        <li><a onclick='handleMedia()'><i class="fa fa-2x fa-microphone"></i></a></li>
+        <li><a onclick='handleSelectPhoto()'><i class="fa fa-2x fa-camera"></i></a></li>
+        <li><a onclick='handleSelectVideo()'><i class="fa fa-2x fa-video-camera"></i></a></li>
+        <li><a onclick='handleSelectAudio()'><i class="fa fa-2x fa-microphone"></i></a></li>
       </ul>
   </div><!-- /.container-fluid -->
 </div>
